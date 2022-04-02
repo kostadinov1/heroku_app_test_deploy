@@ -78,17 +78,30 @@ WSGI_APPLICATION = 'heroku_app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+DEFAULT_DATABASE_CONFIG = {
+    'ENGINE': 'django.db.backends.postgresql',
+    'HOST': config('DB_HOST'),
+    'PORT': config('DB_PORT'),
+    'NAME': config('DB_NAME'),
+    'USER': config('DB_USER'),
+    'PASSWORD': config('DB_PASSWORD'),
+}
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'heroku_app',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': DEFAULT_DATABASE_CONFIG,
 }
+
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'heroku_app',
+#         'USER': 'postgres',
+#         'PASSWORD': 'password',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
